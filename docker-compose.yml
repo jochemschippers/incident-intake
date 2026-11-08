@@ -1,0 +1,10 @@
+# Local cloud: Azurite (queues + tables) and the Cosmos DB emulator.
+services:
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    command: azurite --blobHost 0.0.0.0 --queueHost 0.0.0.0 --tableHost 0.0.0.0 --skipApiVersionCheck --loose
+    ports: ["10000:10000", "10001:10001", "10002:10002"]
+  cosmos:
+    image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:vnext-preview
+    command: --protocol http
+    ports: ["8081:8081", "1234:1234"] # 1234 = data explorer UI
